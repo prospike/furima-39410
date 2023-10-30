@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_item, only: [:new, :create]
-	before_action :check_item_owner, only: [:new, :create]
+  before_action :check_item_owner, only: [:new, :create]
 
   def index
   end
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
 
   private
 
-	def check_item_owner
+  def check_item_owner
     return unless @item.user == current_user || @item.order.present?
 
     redirect_to root_path
@@ -39,13 +39,12 @@ class OrdersController < ApplicationController
     )
   end
 
-	def pay_item
+  def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: order_params[:price],
       card: order_params[:token],
       currency: 'jpy'
-    ) 
+    )
   end
-
 end
