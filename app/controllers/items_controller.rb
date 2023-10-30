@@ -20,23 +20,21 @@ class ItemsController < ApplicationController
     end
   end
 
-	def show
-    
+  def show
   end
 
-	def edit
-    
+  def edit
   end
 
-	def update
+  def update
     if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
     end
   end
-	
-	def destroy
+
+  def destroy
     if @item.destroy
       redirect_to root_path
     else
@@ -44,14 +42,15 @@ class ItemsController < ApplicationController
     end
   end
 
-	private
+  private
+
   def check_item_owner
-    if @item.user != current_user #|| @item.order.present?
-      redirect_to root_path
-    end
+    return unless @item.user != current_user # || @item.order.present?
+
+    redirect_to root_path
   end
-	
-	def set_item
+
+  def set_item
     @item = Item.find(params[:id])
   end
 
