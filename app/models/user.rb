@@ -20,14 +20,14 @@ class User < ApplicationRecord
   def password_complexity
     return if password.blank?
 
-    return if password.match?(/\A(?=.*[a-zA-Z])(?=.*\d)/)
+    return if password.match?(/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i)
 
     errors.add(:password, 'は、半角英数字混合で入力してください')
   end
 
   def name_format
-    errors.add(:family_name, 'は全角（漢字・ひらがな・カタカナ）で入力してください') unless family_name.match?(/\A[ぁ-んァ-ン一-龥々ー]+\z/)
-    return if first_name.match?(/\A[ぁ-んァ-ン一-龥々ー]+\z/)
+    errors.add(:family_name, 'は全角（漢字・ひらがな・カタカナ）で入力してください') unless family_name.match?(/\A[ぁ-んァ-ヶ一-龥々ー]+\z/)
+    return if first_name.match?(/\A[ぁ-んァ-ヶ一-龥々ー]+\z/)
 
     errors.add(:first_name, 'は全角（漢字・ひらがな・カタカナ）で入力してください')
   end
