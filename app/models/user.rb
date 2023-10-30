@@ -3,14 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   validates :nickname, presence: true
   validates :family_name, presence: true
   validates :first_name, presence: true
   validates :family_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :day_of_birth, presence: true
-
 
   validate :password_complexity
   validate :name_format
@@ -39,5 +38,4 @@ class User < ApplicationRecord
 
     errors.add(:first_name_kana, 'は全角カタカナで入力してください')
   end
-
 end
