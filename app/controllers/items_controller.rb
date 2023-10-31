@@ -24,16 +24,12 @@ class ItemsController < ApplicationController
   end
 
 	def edit
-		unless user_signed_in?
-			redirect_to user_session_path
-		else
-			if @item.user != current_user #|| @item.order.present?
-				redirect_to root_path
-			end
-		end
-    
+    @item = Item.find(params[:id])
+    if current_user != @item.user
+      redirect_to root_path
+    end
   end
-
+	
 	def update
     if @item.update(item_params)
       redirect_to item_path
