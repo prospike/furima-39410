@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-	# before_action :set_item, only: [:show, :edit, :update]
-	before_action :set_item, only: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+	before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -24,23 +23,19 @@ class ItemsController < ApplicationController
     
   end
 
-	# def edit
-	# 	unless user_signed_in?
-	# 		redirect_to user_session_path
-	# 	else
-	# 		if @item.user != current_user #|| @item.order.present?
-	# 			redirect_to root_path
-	# 		end
-	# 	end
+	def edit
     
-  # end
+    if current_user != @item.user
+      redirect_to root_path
+    end
+  end
 
-	# def update
-  #   if @item.update(item_params)
-  #     redirect_to item_path
-  #   else
-  #     render :edit
-  #   end
+	def update
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
 	
 	private
