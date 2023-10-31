@@ -72,7 +72,6 @@ app/assets/stylesheets/items/new.css %>
         </div>
 
           <%= f.collection_select(:delivery_fee_id, DeliveryFee.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
@@ -84,7 +83,6 @@ app/assets/stylesheets/items/new.css %>
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-
         <%= f.collection_select(:shipping_date_id, ShippingDate.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
         </div>
 
