@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2023_10_30_045704) do
 
+
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
