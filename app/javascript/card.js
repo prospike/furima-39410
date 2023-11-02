@@ -1,5 +1,7 @@
 const pay = () => {
-  const payjp = Payjp(Rails.application.credentials.public);
+	const publicKeyElement = document.getElementById("public-key");
+	const public_key = publicKeyElement.getAttribute("data-public-key");
+	const payjp = Payjp(public_key);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
