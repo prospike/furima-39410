@@ -1,5 +1,3 @@
-<%# cssは商品出品のものを併用しています。
-app/assets/stylesheets/items/new.css %>
 
 <div class="items-sell-contents">
   <header class="items-sell-header">
@@ -70,7 +68,6 @@ app/assets/stylesheets/items/new.css %>
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-
           <%= f.collection_select(:delivery_fee_id, DeliveryFee.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
